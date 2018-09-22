@@ -6,8 +6,10 @@
 package model.dao.entidades;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +19,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -42,6 +46,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Cliente.findByTelefone", query = "SELECT c FROM Cliente c WHERE c.telefone = :telefone")})
 public class Cliente implements EntityBase {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    private Collection<Divida> dividaCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,7 +67,7 @@ public class Cliente implements EntityBase {
     private String rg;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 11)
+    @Size(min = 1, max = 15)
     @Column(name = "cpf")
     private String cpf;
     @Basic(optional = false)
@@ -192,6 +199,15 @@ public class Cliente implements EntityBase {
     @Override
     public Long getId() {
         return idCliente;
+    }
+
+    @XmlTransient
+    public Collection<Divida> getDividaCollection() {
+        return dividaCollection;
+    }
+
+    public void setDividaCollection(Collection<Divida> dividaCollection) {
+        this.dividaCollection = dividaCollection;
     }
     
 }

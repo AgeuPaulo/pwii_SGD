@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"  
+      dir="ltr" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>SGD #{bundle.sgd}</title>
+        <meta name="author" content="Caique e  Ageu" />
+    </h:head>
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+              <b:navBar brand="SGD" brandHref="dashboard.xhtml" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:dropMenu value="#{bundle.cadastros}">
+                    <b:navLink value="#{bundle.cliente}" href="cadastroCliente.xhtml"></b:navLink>
+                    <b:navLink value="#{bundle.divida}" href="cadastroDivida.xhtml"></b:navLink>
+
+
+                </b:dropMenu>
+                <b:dropMenu value="#{bundle.listas}">
+                    <b:navLink value="#{bundle.clientes}" href="listaClientes.xhtml"></b:navLink>
+                    <b:navLink value="#{bundle.dividas}" href="listaDividas.xhtml"></b:navLink>
+
+
+                </b:dropMenu>
+
+                <b:dropMenu value="#{bundle.relatorios}">
+                    <b:navLink value="#{bundle.graficos}" href="relatorio.xhtml"></b:navLink>
+
+                </b:dropMenu>
+
+                <b:dropMenu value="#{bundle.perfil}">
+                    <b:navLink value="#{bundle.config}" href="#"></b:navLink>
+                </b:dropMenu>
+               
+            </b:navbarLinks>
+                  <b:navbarLinks pull="right"><b:navLink value="#{bundle.sair} " href="#"></b:navLink></b:navbarLinks>
+
+
+        </b:navBar>
+             <div class="content-wrapper">
+                <ui:insert name="conteudo"> </ui:insert>
+            </div> 
+    </h:body>
+</html>

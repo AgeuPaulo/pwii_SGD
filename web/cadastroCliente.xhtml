@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{bundle.cadcliente}</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="./WEB-INF/template/modelo.xhtml">
+            <ui:define name="conteudo">
+
+                <p:growl id="message" showDetail="true" />
+                <b:container>
+                    <h1>#{bundle.cadcliente}</h1>
+                    <h:form>
+                        <b:row>
+                            <b:column col-md="6" style="margin-top: 3%;">
+                                <h:panelGrid columns="2" cellpadding="15px" cellspacing="15px" width="90%">
+                                    <h:outputText value="#{bundle.cpf}: "  />  
+                                    <b:inputText placeholder="#{bundle.cpf}" value="#{clienteBean.cliente.cpf}" mask="999.999.999-99" id="cpf"/>
+                                    <h:outputText value="#{bundle.nome}: " />  
+                                    <b:inputText placeholder="#{bundle.nome}" value="#{clienteBean.cliente.nome}"/>
+                                    <h:outputText value="#{bundle.rg}:"/>  
+                                    <b:inputText placeholder="#{bundle.rg}" value="#{clienteBean.cliente.rg}"/>
+                                    <h:outputText value="#{bundle.datanascimento} " />  
+                                    <b:dateTimePicker value="#{clienteBean.cliente.datanascimento}" 
+                                                      mode="toggle-icon" 
+                                                      showButtonPanel="true" 
+                                                      format="DD/MM/YYYY"/>
+                                    <h:outputText value="#{bundle.celular}: " />  
+                                    <b:inputText placeholder="#{bundle.celular}" value="#{clienteBean.cliente.telefone}" mask="(99) 99999-9999"/>
+                                    <h:outputText value="#{bundle.email}: " />  
+                                    <b:inputText placeholder="#{bundle.email}" value="#{clienteBean.cliente.email}" mask="email"/>
+                                </h:panelGrid>
+                            </b:column>
+
+                            <b:column col-md="6" style="margin-top: 3%;">
+                                <h:panelGrid columns="2" cellpadding="15px" cellspacing="15px" width="90%">
+                                    <h:outputText value="#{bundle.cep}:" /> 
+                                    <b:inputText value="#{clienteBean.endereco.cep}" placeholder="#{bundle.cep}" mask="99999-999" />
+                                    <h:outputText value="#{bundle.rua}: " />  
+                                    <b:inputText placeholder="#{bundle.rua}" value="#{clienteBean.endereco.rua}"/>
+                                    <h:outputText value="#{bundle.num}: " />  
+                                    <b:inputText placeholder="#{bundle.num}" value="#{clienteBean.endereco.numero}"/>
+                                    <h:outputText value="#{bundle.bairro}: " />  
+                                    <b:inputText placeholder="#{bundle.bairro}" value="#{clienteBean.endereco.bairro}"/>
+                                    <h:outputText value="#{bundle.cidade}: " />  
+                                    <b:inputText placeholder="#{bundle.cidade}" value="#{clienteBean.endereco.cidade}"/>
+                                    <h:outputText value="#{bundle.estado}: " />  
+                                    <b:inputText placeholder="#{bundle.estado}" value="#{clienteBean.endereco.estado}"/>
+                                </h:panelGrid>
+                            </b:column>
+                        </b:row>
+                        <h:form>
+                            <b:commandButton action="#{clienteBean.cadastrarCliente()}" value="#{bundle.confirmar}" look="success" />
+                            <b:commandButton value="#{bundle.limpar}" type="reset" action="cadastroCliente" look="danger" />
+                        </h:form>
+                        <hr></hr>
+                    </h:form>
+                    <footer >
+                        <p align="center" >#{bundle.rodape}</p>
+                    </footer>
+                </b:container>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
