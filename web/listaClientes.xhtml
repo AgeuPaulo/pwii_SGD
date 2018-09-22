@@ -2,8 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
@@ -32,13 +32,13 @@
                                     <b:dataTableColumn value="#{cliente.idEndereco.rua}"  label="#{bundle.endereco}"/>
                                     <b:dataTableColumn value="#{cliente.idEndereco.cidade}" label="#{bundle.cidade}" />
                                     <b:dataTableColumn label="#{bundle.acoes}">
-                                            <p:commandButton action="#{clienteBean.excluirCliente()}" 
-                                                             icon="ui-icon-trash" 
-                                                             title="#{bundle.remover}"
-                                                             update="@(.tabela)"
-                                                             process="@form">                          
-                                                <f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}" />
-                                            </p:commandButton>
+                                        <p:commandButton action="#{clienteBean.excluirCliente()}" 
+                                                         icon="ui-icon-trash" 
+                                                         title="#{bundle.remover}"
+                                                         update="@(.tabela)"
+                                                         process="@form">                          
+                                            <f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}" />
+                                        </p:commandButton>
                                     </b:dataTableColumn>                                       
                                 </b:dataTable>
                             </h:form>

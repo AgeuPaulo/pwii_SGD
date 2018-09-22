@@ -53,6 +53,10 @@ public class UsuarioBean implements Serializable {
         }
     }
 
+    public String logout(){
+        return "index";
+    }
+    
     public Usuario getUsuario() {
         return usuario;
     }

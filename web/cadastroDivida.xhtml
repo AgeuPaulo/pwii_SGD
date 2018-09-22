@@ -15,8 +15,8 @@
                 <b:container>
                     <h1>#{bundle.caddivida}</h1>
                     <b:row>
-                        <b:column col-md="6" style="margin-top: 3%;">
-                            <h:form>
+                        <h:form>
+                            <b:column col-md="6" style="margin-top: 3%;">
                                 <h:panelGrid columns="1" cellpadding="15px" cellspacing="15px" width="90%">        
                                     <b:selectOneMenu value="#{dividaBean.cliente}" converter="generic" ajax="true" process="@this" update="@after">
                                         <f:selectItem itemLabel="#{bundle.escolha}" itemValue="#{null}" />
@@ -27,10 +27,8 @@
                                     <b:inputText value="#{dividaBean.cliente.email}" placeholder="#{bundle.email}" disabled="true"/>
                                     <b:inputText value="#{dividaBean.cliente.idEndereco.rua}" placeholder="#{bundle.endereco}" disabled="true"/>
                                 </h:panelGrid>
-                            </h:form>
-                        </b:column>
-                        <b:column col-md="6" style="margin-top: 3%;">
-                            <h:form>
+                            </b:column>
+                            <b:column col-md="6" style="margin-top: 3%;">
                                 <h:panelGrid columns="2" cellpadding="15px" cellspacing="15px" width="90%">
                                     <h:outputText value="#{bundle.descricao}: " />  
                                     <b:inputText placeholder="#{bundle.descricao}" value="#{dividaBean.divida.descricao}"/>
@@ -50,33 +48,36 @@
                                     <h:outputText value="#{bundle.valor}: " />  
                                     <b:inputText placeholder="#{bundle.rs} 00.00" value="#{dividaBean.divida.valor}"/>
                                     <h:outputText value="#{bundle.status}: " />  
-                                    <b:inputText placeholder="#{bundle.status}" value="#{dividaBean.divida.status}"/>
+                                    <b:selectOneMenu value="#{dividaBean.divida.status}">
+                                        <f:selectItem itemLabel="#{bundle.escolha}" itemValue="" />
+                                        <f:selectItem itemLabel="#{bundle.pago}" itemValue="#{bundle.pago}" />
+                                        <f:selectItem itemLabel="#{bundle.negativado}" itemValue="#{bundle.negativado}" />
+                                    </b:selectOneMenu>
                                 </h:panelGrid>
-                            </h:form>
-                            <h:form>       
-                                <p:growl id="message" showDetail="true" />
-                                <p:dialog header="#{bundle.criarnovo}" widgetVar="cadTipo" minHeight="40">
-                                    <b:panelGrid col-spans="2,10">
-                                        <h:outputText value="#{bundle.tipo}"/>
-                                        <b:inputText value="#{tipoBean.tipo.tipo}" size="50"/>
-                                        <h:outputText value="#{bundle.descricao}"/>
-                                        <b:inputTextarea value="#{tipoBean.tipo.descricao}" />
-                                        <b:panelGrid columns="1">
-                                            <b:commandButton action="#{tipoBean.salvarTipo()}"  value="#{bundle.salvar}" look="success" />
-                                        </b:panelGrid>
+                                <div align="right" style="margin-right: 5%">
+                                    <h:form>
+                                        <b:commandButton value="#{bundle.limpar}" type="reset" action="cadastroDivida" look="danger" />
+                                        <b:commandButton action="#{dividaBean.cadastrarDivida()}" value="#{bundle.confirmar}" look="success" />
+                                    </h:form>
+                                </div>  
+                            </b:column>
+                        </h:form>
+                        <h:form>       
+                            <p:growl id="message" showDetail="true" />
+                            <p:dialog header="#{bundle.criarnovo}" widgetVar="cadTipo" minHeight="40">
+                                <b:panelGrid col-spans="2,10">
+                                    <h:outputText value="#{bundle.tipo}"/>
+                                    <b:inputText value="#{tipoBean.tipo.tipo}" size="50"/>
+                                    <h:outputText value="#{bundle.descricao}"/>
+                                    <b:inputTextarea value="#{tipoBean.tipo.descricao}" />
+                                    <b:panelGrid columns="1">
+                                        <b:commandButton action="#{tipoBean.salvarTipo()}"  value="#{bundle.salvar}" look="success" />
                                     </b:panelGrid>
-                                </p:dialog>
-                            </h:form>
-                        </b:column>
+                                </b:panelGrid>
+                            </p:dialog>
+                        </h:form>
                     </b:row>
-                    <h:form>
-                        <div align="right" style="margin-right: 5%">
-                            <b:commandButton value="#{bundle.limpar}" type="reset" action="cadastroDivida" look="danger" />
-                            <b:commandButton action="#{dividaBean.cadastrarDivida()}" value="#{bundle.confirmar}" look="success" />
-                        </div>  
-                    </h:form>
                     <hr></hr>
-
                     <footer >
                         <p align="center" >#{bundle.rodape}</p>
                     </footer>

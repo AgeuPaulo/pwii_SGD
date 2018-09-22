@@ -15,9 +15,7 @@
                 <b:container>
                     <h1>#{bundle.todasD}</h1>
                     <b:row>
-
                         <b:column col-md="12" style="margin-top: 2%;">
-
                             <h:form  style="margin-top: 1%;">
                                 <b:dataTable class="tabela" value="#{dividaBean.lista}"
                                              var="divida"
@@ -30,18 +28,22 @@
                                     <b:dataTableColumn value="#{divida.idDivida}"  label="ID"/>
                                     <b:dataTableColumn value="#{divida.idCliente.nome}"  label="#{bundle.cliente}"/>
                                     <b:dataTableColumn value="#{divida.descricao}" label="#{bundle.descricao}" />
-                                    <b:dataTableColumn value="#{divida.datadivida}"  label="#{bundle.datadivida}"/>
+                                    <b:dataTableColumn label="#{bundle.datadivida}">
+                                        <h:outputText value="#{divida.dataDivida}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </b:dataTableColumn>
                                     <b:dataTableColumn value="#{divida.idTipo.tipo}" label="#{bundle.tipo}"/>
                                     <b:dataTableColumn value="#{divida.status}" label="#{bundle.status}"/>
                                     <b:dataTableColumn value="#{divida.valor}" label="#{bundle.valor}"/>
                                     <b:dataTableColumn label="#{bundle.acoes}">
                                         <p:commandButton action="#{dividaBean.excluirDivida()}" 
-                                                             icon="ui-icon-trash" 
-                                                             title="#{bundle.remover}"
-                                                             update="@(.tabela)"
-                                                             process="@form">                          
-                                                <f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.cliente}" />
-                                            </p:commandButton>
+                                                         icon="ui-icon-trash" 
+                                                         title="#{bundle.remover}"
+                                                         update="@(.tabela)"
+                                                         process="@form">                          
+                                            <f:setPropertyActionListener value="#{divida}" target="#{dividaBean.divida}" />
+                                        </p:commandButton>
                                     </b:dataTableColumn>
                                 </b:dataTable>
                             </h:form>

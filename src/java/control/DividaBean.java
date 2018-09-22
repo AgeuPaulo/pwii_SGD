@@ -63,10 +63,13 @@ public class DividaBean implements Serializable {
     }
 
     public void excluirDivida() {
-        daotipo.remover(divida.getIdTipo().getIdTipo(), Tipo.class);
         daodvd.remover(divida.getIdDivida(), Divida.class);
 
         this.lista = daodvd.listaDividas();
+        
+        tipo = new Tipo();
+        divida = new Divida();
+        cliente = new Cliente(); 
     }
 
     public void atualizarDivida() {

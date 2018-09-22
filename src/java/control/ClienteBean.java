@@ -40,7 +40,7 @@ public class ClienteBean implements Serializable {
         if (infoC == null) {
             daodnr.salvar(endereco);
             cliente.setIdEndereco(endereco);
-            daoclnt.salvar(getCliente());    
+            daoclnt.salvar(cliente);    
             
             FacesContext.getCurrentInstance().addMessage(
                     null,
@@ -64,11 +64,12 @@ public class ClienteBean implements Serializable {
     }
     
     public void excluirCliente() {
-        daodnr.remover(cliente.getIdEndereco().getIdEndereco(), Endereco.class);
         daoclnt.remover(cliente.getIdCliente(), Cliente.class);
         
         this.lista = daoclnt.listaClientes();
         
+            cliente = new Cliente();
+            endereco = new Endereco();    
     }
     
     public List<Cliente> getLista() {

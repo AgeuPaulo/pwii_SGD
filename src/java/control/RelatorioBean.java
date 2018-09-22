@@ -20,9 +20,11 @@ public class RelatorioBean implements Serializable {
  
    private PieChartModel graficoModel;
    private DividaDao dao = new DividaDao();
+   private List<Divida> lista;
  
     @PostConstruct
     public void init() {
+        lista = dao.listaDividas();
         criarModelTorta();
     }
     
@@ -36,7 +38,6 @@ public class RelatorioBean implements Serializable {
     }
  
     private void criarGraficoRelatorio() {
-        List<Divida> lista = dao.listaDividas();
          graficoModel = new PieChartModel();
  
         int contPago = 0; 
@@ -56,6 +57,7 @@ public class RelatorioBean implements Serializable {
         graficoModel.setTitle("Relatórios de Dividas");
         graficoModel.setLegendPosition("w");
         graficoModel.setShadow(false);
+        graficoModel.setShowDataLabels(true);
     }
   
  
